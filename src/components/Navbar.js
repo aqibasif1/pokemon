@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import "../style/navbar.css";
 
+
 const MenuItem = ({ label, path }) => (
   <NavLink
     className='nav-link'

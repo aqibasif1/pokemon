@@ -8,10 +8,12 @@
   webkit-backdrop-filter: saturate(180%) blur(10px);
   backdrop-filter: saturate(180%) blur(10px);
   background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
 }
 
 .logo {
-  height: 80px;
+  height: 75px;
   margin-left: 35px;
 }
 
