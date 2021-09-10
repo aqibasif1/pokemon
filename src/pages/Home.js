@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getPokemons } from "../services/pokemonService";
 import { Box } from "@chakra-ui/layout";
 import { Text, ScaleFade, SlideFade } from "@chakra-ui/react";
+import PokemonNameBox from "../components/PokemonNameBox";
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -12,8 +13,12 @@ const Home = () => {
     try {
       const { data } = await getPokemons();
       setPokemons(data.results);
-      console.log(data);
     } catch (error) {}
+  };
+
+  const pokemonId = (url) => {
+    const arr = url.split("/");
+    return arr[arr.length - 2];
   };
 
   return (
@@ -26,21 +31,12 @@ const Home = () => {
 
       <SlideFade in={true} offsetY='80px'>
         <Box d='flex' flexWrap='wrap' justifyContent='center'>
-          {pokemons.map((pokemon, index) => (
-            <Box
-              key={index}
-              p={3}
-              mx={10}
-              my={2}
-              w={200}
-              maxW={200}
-              borderWidth='2px'
-              borderRadius='lg'
-              overflow='hidden'
-              borderColor='#ffcc02'
-            >
-              <Text textAlign='center'>{pokemon.name}</Text>
-            </Box>
+          {pokemons.map(({ url, name }) => (
+            <PokemonNameBox
+              key={pokemonId(url)}
+              id={pokemonId(url)}
+              name={name}
+            />
           ))}
         </Box>
       </SlideFade>
