@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getPokemon } from "../services/pokemonService";
 import { Box } from "@chakra-ui/layout";
-import { Text, ScaleFade, SlideFade, Heading, Button } from "@chakra-ui/react";
+import { Text, SlideFade, Button } from "@chakra-ui/react";
 import Loader from "../components/Loader";
 import { AddIcon, CloseIcon } from "@chakra-ui/icons";
 import AbilitiesAndStats from "../components/AbilitiesAndStats";
+import DetailsTopSection from "../components/DetailsTopSection";
 
 const PokemonDetails = ({ match, team, setTeam }) => {
   const pokemonId = match.params.id;
@@ -18,14 +19,9 @@ const PokemonDetails = ({ match, team, setTeam }) => {
     try {
       const { data } = await getPokemon(pokemonId);
       setPokemonDetails(data);
-      console.log(data);
     } catch (error) {}
     setIsLoading(false);
   };
-
-  console.log(team);
-
-  const capitalize = (str) => (str ? str[0].toUpperCase() + str.slice(0) : "");
 
   const isAlreadyPresent = () => team.some((t) => t.id === pokemonDetails.id);
 
@@ -40,21 +36,7 @@ const PokemonDetails = ({ match, team, setTeam }) => {
     <Loader />
   ) : (
     <Box pt={150}>
-      <ScaleFade in={true} initialScale={0.9}>
-        <Heading textAlign='center' mb={6} size='2xl'>
-          {capitalize(pokemonDetails?.name)}
-        </Heading>
-
-        <Text textAlign='center'>
-          <b>Weight:</b> {pokemonDetails?.weight}
-        </Text>
-        <Text textAlign='center'>
-          <b>Height:</b> {pokemonDetails?.height}
-        </Text>
-        <Text textAlign='center' mb={6}>
-          <b>Order:</b> {pokemonDetails?.order}
-        </Text>
-      </ScaleFade>
+      <DetailsTopSection pokemon={pokemonDetails} />
 
       <AbilitiesAndStats pokemon={pokemonDetails} />
 

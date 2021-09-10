@@ -13,7 +13,7 @@ const MyPokemons = ({ team }) => {
       </ScaleFade>
 
       <SlideFade in={true} offsetY='80px'>
-        <Box d='flex' flexWrap='wrap' justifyContent='center'>
+        <Box d='flex' flexWrap='wrap' justifyContent='center' mb={5}>
           {team.length ? (
             team.map(({ id, name }) => (
               <PokemonNameBox key={id} id={id} name={name} />

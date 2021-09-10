@@ -4,7 +4,7 @@ import { Box } from "@chakra-ui/layout";
 import { Text } from "@chakra-ui/react";
 
 const PokemonNameBox = ({ id, name }) => {
-  const capitalize = (str) => (str ? str[0].toUpperCase() + str.slice(0) : "");
+  const capitalize = (str) => (str ? str[0].toUpperCase() + str.slice(1) : "");
 
   return (
     <Link to={`/pokemon/${id}`}>

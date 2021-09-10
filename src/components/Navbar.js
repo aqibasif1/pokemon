@@ -20,7 +20,9 @@ const Navbar = ({ team }) => {
 
   return (
     <div className='navbar'>
-      <img className='logo' src={logo} alt='' />
+      <NavLink to='/'>
+        <img className='logo' src={logo} alt='' />
+      </NavLink>
 
       <div className='navigations'>
         <MenuItem path='/' label='Home' />
