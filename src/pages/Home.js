@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getPokemons } from "../services/pokemonService";
-import { Text } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/layout";
-import { Fade, ScaleFade, Slide, SlideFade } from "@chakra-ui/react";
+import { Text, ScaleFade, SlideFade } from "@chakra-ui/react";
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -30,6 +29,7 @@ const Home = () => {
           {pokemons.map((pokemon, index) => (
             <Box
               key={index}
+              p={3}
               mx={10}
               my={2}
               w={200}
