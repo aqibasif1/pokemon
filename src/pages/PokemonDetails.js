@@ -25,6 +25,8 @@ const PokemonDetails = ({ match, team, setTeam }) => {
 
   const isAlreadyPresent = () => team.some((t) => t.id === pokemonDetails.id);
 
+  const isTeamFull = () => team.length >= 6;
+
   const handleClick = () =>
     setTeam(
       isAlreadyPresent()
@@ -41,23 +43,37 @@ const PokemonDetails = ({ match, team, setTeam }) => {
       <AbilitiesAndStats pokemon={pokemonDetails} />
 
       <SlideFade in={true} offsetY='10px'>
+        {isTeamFull() && !isAlreadyPresent() && (
+          <Text
+            textAlign='center'
+            mt={10}
+            mb={5}
+            color='green'
+            fontSize='xl'
+            px={2}
+          >
+            Your team is full, you can't add more than 6 pokemons!
+          </Text>
+        )}
         {isAlreadyPresent() && (
           <Text textAlign='center' mt={10} mb={-5} color='green' fontSize='xl'>
             Added in my team!
           </Text>
         )}
 
-        <Box d='flex' justifyContent='center' mb={9} mt={10}>
-          <Button
-            size='lg'
-            variant='solid'
-            onClick={handleClick}
-            colorScheme={isAlreadyPresent() ? "pink" : "green"}
-            leftIcon={isAlreadyPresent() ? <CloseIcon /> : <AddIcon />}
-          >
-            {isAlreadyPresent() ? "Remove from team" : "Add in team"}
-          </Button>
-        </Box>
+        {(!isTeamFull() || isAlreadyPresent()) && (
+          <Box d='flex' justifyContent='center' mb={9} mt={10}>
+            <Button
+              size='lg'
+              variant='solid'
+              onClick={handleClick}
+              colorScheme={isAlreadyPresent() ? "pink" : "green"}
+              leftIcon={isAlreadyPresent() ? <CloseIcon /> : <AddIcon />}
+            >
+              {isAlreadyPresent() ? "Remove from team" : "Add in team"}
+            </Button>
+          </Box>
+        )}
       </SlideFade>
     </Box>
   );
