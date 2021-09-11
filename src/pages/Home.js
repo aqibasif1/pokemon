@@ -43,7 +43,7 @@ const Home = () => {
   return isLoading ? (
     <Loader />
   ) : (
-    <Box pt={150}>
+    <Box pt={150} minH='80vh'>
       <ScaleFade in={true} initialScale={0.9}>
         <Text fontSize='4xl' fontWeight='700' textAlign='center' mb={6}>
           Home
