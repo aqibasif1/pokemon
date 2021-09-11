@@ -27,12 +27,14 @@ const PokemonDetails = ({ match, team, setTeam }) => {
 
   const isTeamFull = () => team.length >= 6;
 
-  const handleClick = () =>
-    setTeam(
-      isAlreadyPresent()
-        ? [...team.filter((t) => t.id !== pokemonDetails.id)]
-        : [...team, pokemonDetails]
-    );
+  const handleClick = () => {
+    let newPokemons = isAlreadyPresent()
+      ? [...team.filter((t) => t.id !== pokemonDetails.id)]
+      : [...team, pokemonDetails];
+
+    setTeam(newPokemons);
+    localStorage.setItem("pokemons", JSON.stringify(newPokemons));
+  };
 
   return isLoading ? (
     <Loader />

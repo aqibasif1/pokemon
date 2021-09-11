@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
@@ -8,6 +8,11 @@ import MyPokemons from "./pages/MyPokemons";
 
 function App() {
   const [myTeam, setMyTeam] = useState([]);
+
+  useEffect(() => {
+    let pokemons = JSON.parse(localStorage.getItem("pokemons")) || [];
+    setMyTeam(pokemons);
+  }, []);
 
   return (
     <Router>
