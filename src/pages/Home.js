@@ -4,11 +4,13 @@ import { Box } from "@chakra-ui/layout";
 import { Text, ScaleFade, SlideFade } from "@chakra-ui/react";
 import PokemonNameBox from "../components/PokemonNameBox";
 import SearchBar from "../components/SearchBar";
+import Loader from "../components/Loader";
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [query, setQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => getAllPokemons(), []);
 
@@ -18,11 +20,13 @@ const Home = () => {
   }, [query]);
 
   const getAllPokemons = async () => {
+    setIsLoading(true);
     try {
       const { data } = await getPokemons();
       setPokemons(data.results);
       setSearchResult(data.results);
     } catch (error) {}
+    setIsLoading(false);
   };
 
   const searchPokemons = () => {
@@ -36,7 +40,9 @@ const Home = () => {
     return arr[arr.length - 2];
   };
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <Box pt={150}>
       <ScaleFade in={true} initialScale={0.9}>
         <Text fontSize='4xl' fontWeight='700' textAlign='center' mb={6}>

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { getPokemon } from "../services/pokemonService";
-import { Box } from "@chakra-ui/layout";
-import { Text, SlideFade, Button } from "@chakra-ui/react";
-import Loader from "../components/Loader";
+import { Box, Text, SlideFade, Button } from "@chakra-ui/react";
 import { AddIcon, CloseIcon } from "@chakra-ui/icons";
+import { getPokemon } from "../services/pokemonService";
 import AbilitiesAndStats from "../components/AbilitiesAndStats";
 import DetailsTopSection from "../components/DetailsTopSection";
+import Loader from "../components/Loader";
 
 const PokemonDetails = ({ match, team, setTeam }) => {
   const pokemonId = match.params.id;

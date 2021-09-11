@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import PokemonDetails from "./pages/PokemonDetails";
 import MyPokemons from "./pages/MyPokemons";
+import Footer from "./components/Footer";
 
 function App() {
   const [myTeam, setMyTeam] = useState([]);
@@ -31,6 +32,7 @@ function App() {
           />
           <Route path='/' exact component={Home} />
         </Switch>
+        <Footer />
       </ChakraProvider>
     </Router>
   );
