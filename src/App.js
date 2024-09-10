@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -19,19 +19,14 @@ function App() {
     <Router>
       <ChakraProvider>
         <Navbar team={myTeam} />
-        <Switch>
-          <Route
-            path='/myPokemons'
-            render={(props) => <MyPokemons team={myTeam} {...props} />}
-          />
+        <Routes>
+          <Route path='/' exact element={<Home />} />
+          <Route path='/myPokemons' element={<MyPokemons team={myTeam} />} />
           <Route
             path='/pokemon/:id'
-            component={(props) => (
-              <PokemonDetails team={myTeam} setTeam={setMyTeam} {...props} />
-            )}
+            element={<PokemonDetails team={myTeam} setTeam={setMyTeam} />}
           />
-          <Route path='/' exact component={Home} />
-        </Switch>
+        </Routes>
         <Footer />
       </ChakraProvider>
     </Router>

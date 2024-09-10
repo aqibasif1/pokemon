@@ -5,9 +5,10 @@ import { getPokemon } from "../services/pokemonService";
 import AbilitiesAndStats from "../components/AbilitiesAndStats";
 import DetailsTopSection from "../components/DetailsTopSection";
 import Loader from "../components/Loader";
+import { useParams } from "react-router-dom";
 
 const PokemonDetails = ({ match, team, setTeam }) => {
-  const pokemonId = match.params.id;
+  const { id: pokemonId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [pokemonDetails, setPokemonDetails] = useState({});
 
